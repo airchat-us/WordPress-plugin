@@ -1,7 +1,6 @@
 <?php
 /**
 * Plugin Name: Airchat Bot
-* Plugin URI: https://airchat.us/
 * Version: 1.0.0
 * Author: Airchat
 * Author URI: https://airchat.us/
