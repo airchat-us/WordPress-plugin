@@ -7,10 +7,10 @@
 	<p>
 		<?php 
 			printf( 
-				__( 'Thank you for installing %1$s!', 'airchat-bot' ),
+				__( 'Thank you for installing %1$s!', 'airchat' ),
 				$this->plugin->displayName 
 			); ?>
-		<a href="<?php echo $setting_page; ?>"><?php esc_html_e( 'Click here', 'airchat-bot' ); ?></a> <?php esc_html_e( 'to configure the plugin.', 'airchat-bot' ); ?>
+		<a href="<?php echo $setting_page; ?>"><?php esc_html_e( 'Click here', 'airchat' ); ?></a> <?php esc_html_e( 'to configure the plugin.', 'airchat' ); ?>
 	</p>
 </div>
 <script type="text/javascript">

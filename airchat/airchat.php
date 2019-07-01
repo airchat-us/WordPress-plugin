@@ -1,6 +1,6 @@
 <?php
 /**
-* Plugin Name: Airchat Bot
+* Plugin Name: Airchat
 * Version: 1.0.0
 * Author: Airchat
 * Author URI: https://airchat.us/
@@ -25,9 +25,9 @@
 */
 
 /**
-* AirchatBot Class
+* Airchat Class
 */
-class AirchatBot {
+class Airchat {
 	/**
 	* Constructor
 	*/
@@ -35,8 +35,8 @@ class AirchatBot {
 
 		// Plugin Details
         $this->plugin               = new stdClass;
-        $this->plugin->name         = 'airchat-bot';
-        $this->plugin->displayName  = 'Airchat Bot';
+        $this->plugin->name         = 'airchat';
+        $this->plugin->displayName  = 'Airchat';
         $this->plugin->version      = '1.0.0';
         $this->plugin->folder       = plugin_dir_path( __FILE__ );
         $this->plugin->url          = plugin_dir_url( __FILE__ );
@@ -69,7 +69,7 @@ class AirchatBot {
         global $pagenow;
 
         if ( !get_option( $this->plugin->db_welcome_dismissed_key ) ) {
-        	if ( ! ( $pagenow == 'options-general.php' && isset( $_GET['page'] ) && $_GET['page'] == 'airchat-bot' ) ) {
+        	if ( ! ( $pagenow == 'options-general.php' && isset( $_GET['page'] ) && $_GET['page'] == 'airchat' ) ) {
 	            $setting_page = admin_url( 'options-general.php?page=' . $this->plugin->name );
 	            // load the notices view
                 include_once( $this->plugin->folder . '/views/dashboard-notices.php' );
@@ -108,7 +108,7 @@ class AirchatBot {
     function adminPanel() {
 		// only admin user can access this page
 		if ( !current_user_can( 'administrator' ) ) {
-			echo '<p>' . __( 'Sorry, you are not allowed to access this page.', 'airchat-bot' ) . '</p>';
+			echo '<p>' . __( 'Sorry, you are not allowed to access this page.', 'airchat' ) . '</p>';
 			return;
 		}
 
@@ -117,17 +117,17 @@ class AirchatBot {
         	// Check nonce
 			if ( !isset( $_REQUEST[$this->plugin->name.'_nonce'] ) ) {
 	        	// Missing nonce
-	        	$this->errorMessage = __( 'nonce field is missing. Settings NOT saved.', 'airchat-bot' );
+	        	$this->errorMessage = __( 'nonce field is missing. Settings NOT saved.', 'airchat' );
         	} elseif ( !wp_verify_nonce( $_REQUEST[$this->plugin->name.'_nonce'], $this->plugin->name ) ) {
 	        	// Invalid nonce
-	        	$this->errorMessage = __( 'Invalid nonce specified. Settings NOT saved.', 'airchat-bot' );
+	        	$this->errorMessage = __( 'Invalid nonce specified. Settings NOT saved.', 'airchat' );
         	} else {
 	        	// Save
 				// $_REQUEST has already been slashed by wp_magic_quotes in wp-settings
 				// so do nothing before saving
 	    		update_option( 'ac-bot-id', $_REQUEST['ac-bot-id'] );
 	    		update_option( $this->plugin->db_welcome_dismissed_key, 1 );
-				$this->message = __( 'Settings Saved.', 'airchat-bot' );
+				$this->message = __( 'Settings Saved.', 'airchat' );
 			}
         }
 
@@ -175,4 +175,4 @@ class AirchatBot {
 	}
 }
 
-$airchat = new AirchatBot();
+$airchat = new Airchat();
