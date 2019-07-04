@@ -125,7 +125,7 @@ class Airchat {
 	        	// Save
 				// $_REQUEST has already been slashed by wp_magic_quotes in wp-settings
 				// so do nothing before saving
-	    		update_option( 'ac-bot-id', $_REQUEST['ac-bot-id'] );
+	    		update_option( 'ac-bot-id', sanitize_text_field( $_REQUEST['ac-bot-id'] ) );
 	    		update_option( $this->plugin->db_welcome_dismissed_key, 1 );
 				$this->message = __( 'Settings Saved.', 'airchat' );
 			}
